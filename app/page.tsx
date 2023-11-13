@@ -25,6 +25,7 @@ export default async function HomoPage() {
         <div className=" overflow-hidden w-full flex  bg-slate-800 ">
          <div className=" z-30 h-28 gap-14 items-center fixed justify-between">
              <Navbar />
+             oi
          </div>
          <div className="flex  flex-col items-center justify-center ">
             <h1 className=" md:left-[30rem] left-8 text-red-500 top-5 md:top-20  w-screen relative m-8 p-2 text-3xl md:text-5xl justify-center items-center" >Pricinpais Topícos</h1>
