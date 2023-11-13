@@ -1,113 +1,85 @@
-import Image from 'next/image'
+import Navbar from "@/components/homepage/nav-bar";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import Image from "next/image";
+import Link from "next/link";
+import { RedirectType, redirect } from "next/navigation";
+import { cookies } from "next/headers";
+export default async function HomoPage() {
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    let logg = false   
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+  try{
+    const supabase = createServerComponentClient({cookies})
+    const { data: { session }, data} = await supabase.auth.getSession()
+    if(session) logg = true
+  }catch(error){
+    console.log('Home', error)
+  }finally{
+    if(logg) redirect("/HomeUserAuth", RedirectType.replace)
+  }
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+ 
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    return (
+        <div className=" overflow-hidden w-full flex  bg-slate-800 ">
+         <div className=" z-30 h-28 gap-14 items-center fixed justify-between">
+             <Navbar />
+         </div>
+         <div className="flex  flex-col items-center justify-center ">
+            <h1 className=" md:left-[30rem] left-8 text-red-500 top-5 md:top-20  w-screen relative m-8 p-2 text-3xl md:text-5xl justify-center items-center" >Pricinpais Topícos</h1>
+         <div id="section01" className="overflow-y-scroll relative p-9 right-7 md:px-3 z-10 h-[30rem]  w-screen md:h-screen flex justify-center flex-col items-center">
+             <div className=" h-[28rem] w-full  flex  flex-col ">
+                 <h1 className="text-purple-500 text-3xl m-4 "> -O que é progamação</h1>
+                 <div className=" flex-col flex md:flex-row  items-center  md:items-start justify-between">
+                     <p className="text-clip text-white"> &nbsp; &nbsp; &nbsp; Programação é o processo de escrita, teste e manutenção de um programa de computador. O programa é escrito em uma linguagem de programação, embora seja possível, com alguma dificuldade, o escrever diretamente em linguagem de máquina. Diferentes partes de um programa podem ser escritas em diferentes linguagens. <br />
+ 
+                     &nbsp; &nbsp; &nbsp;Diferentes linguagens de programação funcionam de diferentes modos. Por esse motivo, os programadores podem criar programas muito diferentes para diferentes linguagens; muito embora, teoricamente, a maioria das linguagens possa ser usada para criar qualquer programa.
+ <br />
+ &nbsp;  &nbsp; &nbsp;Há várias décadas se debate se a programação é mais semelhante a uma arte (Donald Knuth), a uma ciência, à matemática (Edsger Dijkstra), à engenharia (David Parnas), ou Se é um campo completamente novo.
+ <br/>   &nbsp;  &nbsp; &nbsp;hoje utilizamos diversas ferramentas que auxilíam na criação de aplicações, veremos agora 3 exemplos dessas ferramentas, que são englobadas tanto no backend como no frontend mas também os bancos de dados, pois será neles que serão guardados os dados da aplicação.
+ </p>
+                     <Image className="rounded-full w-[20rem] h-[20rem] md:h-[24rem] md:w-[27rem]" src={"/accets/laptop-com-icone-de-codigo-isometrico-de-programa-desenvolvimento-de-software-e-aplicacoes-de-programacao-neon-escuro_39422-971.avif"} alt='images' width={600} height={600} />
+                 </div>
+             </div>
+         </div>
+ 
+ 
+         <div id="section02" className="overflow-y-scroll relative p-9 right-7 md:p-0 z-10 h-[30rem]  w-screen md:h-screen flex justify-center flex-col items-center"> 
+             <div className="px-8 h-[28rem] w-full  flex  flex-col ">
+                 <h1 className="text-purple-900 text-3xl m-4"> -Quais São as suas utilidades</h1>
+                 <div className="flex-col flex md:flex-row  items-center  md:items-start justify-between">
+                     <p className="text-clip text-black"> 
+    &nbsp;  &nbsp; &nbsp;Ao trabalhar com conceitos de lógica e de matemática, a programação contribui muito para<br /> o desenvolvimento do raciocínio e do pensamento sistêmico dos jovens.<br /> 
+    &nbsp;  &nbsp; &nbsp;Além disso, o trabalho minucioso da escrita de códigos treina bastante<br /> a concentração e a capacidade de resolução de problemas.<br />
+    &nbsp;  &nbsp; &nbsp;Através da programação, é possível desenvolver softwares, aplicativos, <br />websites, jogos, sistemas de inteligência artificial e muito mais.<br /> 
+    &nbsp;  &nbsp; &nbsp;A programação permite automatizar tarefas, resolver<br /> problemas e criar soluções personalizadas para atender às necessidades específicas de cada pessoa ou empresa.<br />
+                     Logo então a progamação tem tantos benefícos para desde aqueles<br /> que tem ela como profissão, como também para a sociedade como um todo
+                     </p>
+                     <Image className="rounded-full  w-[20rem] h-[20rem] md:h-[24rem] md:w-[27rem]" src={"/accets/7994702-programadores-e-ciber-seguranca-tecnologias-design-websites-e-seguranca-no-mundo-social-conceitos-de-seguranca-cibernetica-foto.jpg"} alt='images' width={500} height={500} />
+                 </div>
+             </div>
+         </div>
+ 
+ 
+         <div id="section03" className="overflow-y-scroll relative p-9 right-7 md:p-0 z-10 h-[30rem]  w-screen md:h-screen flex justify-center flex-col items-center"> 
+             <div className="px-8 h-[28rem] w-full  flex  flex-col">
+                 <h1 className="text-purple-500 text-3xl m-4 "> -Quais São as suas utilidades</h1>
+                 <div className="flex-col flex md:flex-row  items-center  md:items-start justify-between">
+                     <p className="text-clip text-white"> 
+                     Qual será o primeiro passo que se  deve tomar para aprender a progamar e a criar
+                     as suas primeiras aplicações? <br/>Neste video iremos ver uma introdução sobre como sair do
+                     completo {"0 a 0"}<br/> até até a um primeiro passo, já que a progamação em si e uma caminhada extença e com bastantes vertentes, porém, o básico<br/> aprendido será aplicado em todas as vertentes  desta área.
+                     </p>
+                     <iframe className="m-3 rounded-lg  w-[20rem] h-[20rem] md:h-[23rem] md:w-[26rem]" width="560" height="315" src="https://www.youtube.com/embed/l_5qTI5EHgc?si=9-UlTxaOcFWLi90S" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                 </div>
+             </div>
+         </div>
+ 
+         </div>
+             
+         </div>
+         
+   
+     )
 }
