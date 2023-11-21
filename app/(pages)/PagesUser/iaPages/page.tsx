@@ -6,8 +6,8 @@ import { cookies } from "next/headers";
 import { RedirectType, redirect, useRouter  } from "next/navigation";
 import { SidebarGlobal } from "@/components/side-bar";
 import { dados } from "../cardsElements/data";
-import MenuHomerCards from "../cardsElements/nav-bar";
 import BodyInital from "./IaElement";
+import MenuHomerCards from "../cardsElements/nav-bar";
 
 
 
@@ -21,7 +21,9 @@ export default async function Home() {
     
   return (
     <div className="flex ">
-        <MenuHomerCards />
+        <MenuHomerCards >
+            <div></div>
+        </MenuHomerCards>
         <div className="flex justify-between">
         <aside className="">
             <SidebarGlobal />

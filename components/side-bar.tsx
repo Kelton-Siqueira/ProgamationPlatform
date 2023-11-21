@@ -4,12 +4,12 @@ import Link from "next/link"
 
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  
+    
 }
 
 export function SidebarGlobal({ className }: SidebarProps) {
   return (
-    <div className={cn("py-5 bg-indigo-300 flex items-center z-30  justify-center fixed ", className)}>
+    <div className={cn("py-9 flex items-center z-30  justify-center fixed ", className)}>
       <div className="space-y-4 py-4 my-10 w-52 flex items-start justify-center flex-col">
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">

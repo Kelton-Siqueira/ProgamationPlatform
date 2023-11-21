@@ -24,11 +24,9 @@ export async function POST(req:NextApiRequestWithImage, res:NextResponse){
                 Authorization: "token r8_X2YZ2rFIZIypAGEwnCXCjOMUt9i2TBw0AxyNF",
             },
             body: JSON.stringify({
-                version: "fd0f02756ae5c3244cfb45c0603296e7418c07d1501bc6e9463ea2d215d5e38f",
+                version: "02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3",
                 input: {
                     prompt:  imageUrl,
-                    version: "v1.4",
-                    scale: 2,
                 }
             })
         })
@@ -38,6 +36,7 @@ export async function POST(req:NextApiRequestWithImage, res:NextResponse){
         let jsonStartProcess  = await startRestorProcess.json()
 
         let endpointURL = await jsonStartProcess.urls.get
+        console.log(endpointURL, 'point')
         let restoreImage:string | null = null
         while(!restoreImage){
             console.log('Pooling image from replicate..')
@@ -51,7 +50,8 @@ export async function POST(req:NextApiRequestWithImage, res:NextResponse){
             let jsonfinalResponse = await finalResponse.json()
 
             if(jsonfinalResponse.status === 'succeeded'){
-                restoreImage = jsonfinalResponse.output
+                let ls = jsonfinalResponse.output
+                restoreImage = ls.toString().replace(/,/g, '')
             }else if(jsonfinalResponse.status === 'failed'){
                 break
             }else{
@@ -61,6 +61,6 @@ export async function POST(req:NextApiRequestWithImage, res:NextResponse){
             }
 
         }
-        console.log(imageUrl, 'url')
+        console.log(restoreImage)
     return NextResponse.json({data: restoreImage ? restoreImage : 'failed to restored image'},  )
 }

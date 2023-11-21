@@ -1,15 +1,8 @@
 import { Separator } from "@/components/ui/separator";
-import { ObjectEncodingOptions } from "fs";
-import { inherits } from "util";
+import { dados } from "./data";
 
 interface ele {
-    ls: [{
-        id:number;
-        title:string;
-        body:string;
-        
-        
-    }]
+    seache:string;
 }
 
 interface Posts {
@@ -20,20 +13,21 @@ interface Posts {
 
      
 
-export default function PostBody({ls}: ele){
+export default async function PostBody({seache }: ele){
     const dado = []
+    const dadosbrutos = await dados()
+    const ls = dadosbrutos.user
     try{
         
-        for(let i = 0; i < 21; i++){
+        for(let i = 0; i < ls.length; i++){
             dado.push(ls[i])
         }
-        console.log(dado)
     }catch(error){
         console.log('error', error)
     }
     return(
         <div className="grid grid-cols-3">
-            {
+             {
                 dado.map(({ body, title, id}: Posts) =>{
                     return(
                         <div key={id} className="m-6 bg-slate-200 flex flex-col gap-4 p-4">

@@ -1,5 +1,6 @@
-export async function dados(){
-    const dados = await fetch("https://jsonplaceholder.typicode.com/posts")
-    const json = dados.json()
-    return json
+export const dados = async () =>{
+    const res = await fetch("http://localhost:3000/api/PostUsers", {
+        method: 'GET',
+      })
+      return res.json()
 }

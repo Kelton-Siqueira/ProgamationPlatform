@@ -29,7 +29,7 @@ export default function Imgesls({ title, url, modal}:imges){
                  </div>
                     </div>
                     {modal ? (
-                        <Button onClick={() =>{
+                        <Button onClick={() =>{ 
                             route.back()
                         }} className="bg-red-500 h-10">Retorna</Button> 
                     ) : ''}

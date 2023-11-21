@@ -8,6 +8,7 @@ import { SidebarGlobal } from "@/components/side-bar";
 import { dados } from "./data";
 import Phots from "./Phots";
 import MenuHomerCards from "./nav-bar";
+import { TesLs } from "./testcorpo";
 
 
 export default async function Home() {
@@ -27,16 +28,6 @@ export default async function Home() {
     
     
   return (
-    <main className="flex ">
-        <div className="z-40  h-10 fixed bg-blue-500">
-            <MenuHomerCards /> <div></div>
-        </div>
-        <aside className="w-48">
-            <SidebarGlobal />
-        </aside>
-        <div className=" z-0 flex justify-between items-center my-8 p-4 ">
-        <Phots ls={...ls} />       
-        </div>
-    </main>
+    <TesLs tese={...ls} />
   )
 }
