@@ -1,21 +1,24 @@
+'use client'
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
-import { Button } from "./ui/button"
 import Link from "next/link"
-import { DialogDemo } from "./mobileSideBar"
+import { useState } from "react"
+import { Button } from "./ui/button"
+import { AlignJustify } from "lucide-react"
 
-
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-    
-}
-
-export function SidebarGlobal({ className }: SidebarProps) {
+export function DialogDemo() {
+    const [btls, setBtls] = useState(false)
+    console.log(btls)
   return (
-    <div className=" z-20 ">
-        <div className=" z-40  flex  m-[0.12rem] my-[2.1rem] justify-start ">
-            <DialogDemo />
-        </div>
-        <div className={cn("hidden md:flex   z-30  bg-red-500x' fixed ", className)}>
-      <div className="space-y-4 py-4  w-52 flex items-start justify-center flex-col">
+    <div  className=" md:hidden  overflow-hidden fixed my-8 ">
+        {
+            btls ? (
+                <div onClick={() => setBtls(false)} className={cn(" md:hidden w-96 relative z-30 ")}>
+      <div className="space-y-4 py-2  w-52 flex items-start justify-center flex-col">
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Discover
@@ -100,7 +103,7 @@ export function SidebarGlobal({ className }: SidebarProps) {
               </svg>
               Generete images IA
             </Link>
-            <Link href={"/PagesUser/ChatGenerate"} className="w-40 flex gap-2 items-center justify-start p-2 hover:bg-slate-500 hover:text-white rounded-xl">
+            <Link href={""} className="w-40 flex gap-2 items-center justify-start p-2 hover:bg-slate-500 hover:text-white rounded-xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -114,7 +117,7 @@ export function SidebarGlobal({ className }: SidebarProps) {
                 <circle cx="8" cy="18" r="4" />
                 <path d="M12 18V2l7 4" />
               </svg>
-              ChatGenerat
+              Songs
             </Link>
             <Link href={""} className="w-40 flex gap-2 items-center justify-start p-2 hover:bg-slate-500 hover:text-white rounded-xl">
               <svg
@@ -172,6 +175,8 @@ export function SidebarGlobal({ className }: SidebarProps) {
         </div>
       </div>
     </div>
+            ) : <Button className="relative bg-zinc-400  w-full flex  items-center justify-center " onClick={() => setBtls(true)}><AlignJustify /></Button>
+        }
     </div>
   )
 }

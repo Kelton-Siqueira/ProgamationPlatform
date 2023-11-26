@@ -22,7 +22,7 @@ export default function MenuHomerCards({children}:ls){
 
     if(ls) null
     return (
-        <div className="flex justify-between  items-center h-20 fixed overflow-y-hidden w-screen bg-white  p-5 z-40">
+        <div className="flex justify-between  items-center h-16 fixed overflow-y-hidden w-screen bg-red-500  p-5 z-40">
             <Link href={"/HomeUserAuth"} className="font-extrabold mx-8">
                 <span className="font-extralight">Logo</span>Bar
             </Link>

@@ -1,0 +1,36 @@
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_URL=
+
+
+
+Revitalização de imagens:
+
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_FOLDER = 
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_FOLDER_RESTORED= 
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_FOLDER_PROCESSING = 
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_PUBLIC_URL=
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_URL=
+REPLICATE_API_TOLKEN=
+
+
+Criação de imagens:
+
+
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_FOLDER_RECRIENTION = 
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_FOLDER_RESTORED_RECRIENTION= 
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_FOLDER_PROCESSING_RECRIENTION = 
+
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_PUBLIC_URL_RECRIENTION=""
+
+NEXT_PUBLIC_SUPABESE_APP_BUCKET_IMAGE_URL_RECRIENTION="Diretorio image"
+
+REPLICATE_API_TOLKEN_RECRIENTION="tokken replicate"
+
+# This was inserted by `prisma init`:
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+DATABASE_URL="database"

@@ -17,7 +17,7 @@ export default function MenuHomer(){
 
     if(ls) null
     return (
-        <div className="flex justify-between items-center fixed overflow-y-hidden w-screen bg-slate-400  p-2">
+        <div className="flex justify-between z-20 items-center fixed overflow-y-hidden w-screen bg-slate-400  p-2">
             <Link href={"/homerUser"} className="font-extrabold mx-8">
                 <span className="font-extralight">Logo</span>Bar
             </Link>

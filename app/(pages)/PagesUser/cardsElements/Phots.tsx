@@ -48,7 +48,7 @@ export default function Phots({ ls, seache}: ele){
     
     return(
         <div className="flex items-center justify-center z-5">
-           <div className=" grid grid-cols-3">
+           <div className=" grid grid-cols-1 md:grid-cols-3">
            {!seache ? 
             forDados.map(({ url, title, id}) => {
                 return(

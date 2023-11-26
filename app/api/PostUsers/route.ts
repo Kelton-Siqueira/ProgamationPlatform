@@ -20,6 +20,7 @@ export async function POST(req: NextRequest){
 
     try{
         const { title, body } = await req.json();
+        console.log(title, body, 'route')
         const user = await prisma.postUsers.create({
             data: {
                 title,

@@ -1,9 +1,12 @@
-import { SidebarGlobal } from "@/components/side-bar"
 import { PostTest } from "./PostTest";
+import PostFormModel from "./postFormModel";
 
 
 export default async function TesLs(){
     return(
-            <PostTest  />
+            <div className="overflow-x-hidden">
+                <PostTest  />
+                
+            </div>
     )
 }

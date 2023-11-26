@@ -21,6 +21,7 @@ export default function InputChat(){
           const supabase = createClientComponentClient()
           const res = await fetch("/api/ChatGenerate", {
             method: 'POST',
+            cache: "no-store",
             headers: {
               "Content-Type": "application/json"
             },
@@ -32,7 +33,9 @@ export default function InputChat(){
           const restoreImageURL = await res.json()
           console.log(typeof restoreImageURL, 'urlimage')
           setLs(restoreImageURL.data)
-          const readImageRes = await fetch(restoreImageURL.data)
+          const readImageRes = await fetch(restoreImageURL.data, {
+            cache: "no-store",
+          })
   
           console.log(readImageRes, 'read')
           const imageBlob = await readImageRes.blob()
@@ -49,10 +52,10 @@ export default function InputChat(){
 
       console.log(ls, 'ls')
     return(
-        <div className="flex flex-col  ">
-            <div className=" break-all">
-                <p className="justify-center flex h-64 break-all">
-                Olá a todos! Estamos quase em 2022 e ainda não sabemos se existem alienígenas vivendo entre nós, ou não? Talvez a pessoa que está escrevendo isso seja um alienígena. Você nunca vai saber.
+        <div className="flex flex-col mx-96  ">
+            <div className=" w-22 break-all">
+                <p className="justify-center flex  break-all">
+                   {ls} 
                 </p>
             </div>
 

@@ -61,6 +61,6 @@ export async function POST(req:NextApiRequestWithImage, res:NextResponse){
             }
 
         }
-        console.log(restoreImage)
+        console.log(restoreImage, 'imagex')
     return NextResponse.json({data: restoreImage ? restoreImage : 'failed to restored image'},  )
 }

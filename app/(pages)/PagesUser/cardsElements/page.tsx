@@ -28,6 +28,8 @@ export default async function Home() {
     
     
   return (
-    <TesLs tese={...ls} />
+    <div className="overflow-hidden">
+        <TesLs tese={...ls} />
+    </div>
   )
 }
