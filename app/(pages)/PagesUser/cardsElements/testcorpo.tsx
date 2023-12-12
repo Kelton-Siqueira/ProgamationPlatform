@@ -21,7 +21,7 @@ export const TesLs = ({tese}:ele) => {
         <div className="flex w-screen ">
             <div className="z-40  h-10 fixed bg-blue-500">
             <MenuHomerCards>
-            <input type="text" onChange={(e) => setInp(e.target.value)} className=" border bottom-4  p-4 h-10 w-full rounded-2xl" placeholder="ola mundo"/>
+            <input   type="text" onChange={(e) => setInp(e.target.value)} className=" border shadow-none outline-0 text-black text-lg bottom-4  p-4 h-10 w-full rounded-2xl" placeholder="ola mundo"/>
             </MenuHomerCards>
         </div>
         <aside className="w-48">

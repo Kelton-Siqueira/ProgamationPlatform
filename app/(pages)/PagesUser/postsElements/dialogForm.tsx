@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -8,17 +9,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import PostFormModel from "./postFormModel"
+import { useEffect, useState } from "react"
 
 export function DialogDemo() {
+    const [isLog, setIslog] = useState(false)
+    useEffect(()=> {
+        setIslog(true)
+    }, [])
+    if(isLog) null
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button className="z-40" variant="outline">Edit Profile</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent  className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>

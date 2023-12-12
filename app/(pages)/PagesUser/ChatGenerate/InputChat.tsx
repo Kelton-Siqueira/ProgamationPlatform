@@ -36,9 +36,7 @@ export default function InputChat(){
           const readImageRes = await fetch(restoreImageURL.data, {
             cache: "no-store",
           })
-  
-          console.log(readImageRes, 'read')
-          const imageBlob = await readImageRes.blob()
+           const imageBlob = await readImageRes.blob()
   
             setRestoredFile({
               file: imageBlob,
@@ -54,14 +52,14 @@ export default function InputChat(){
     return(
         <div className="flex flex-col mx-96  ">
             <div className=" w-22 break-all">
-                <p className="justify-center flex  break-all">
+                <p className="justify-center flex text-white break-all">
                    {ls} 
                 </p>
             </div>
 
 
 <div className=" w-full flex items-center my-4 gap-2">
-            <input className="border   rounded-2xl w-[31.4rem] h-9 outline-none px-5" type="text" onChange={(e) => seFiles(e.target.value)} />
+            <input className="border text-black text-lg  rounded-2xl w-[31.4rem] h-9 outline-none px-5" type="text" onChange={(e) => seFiles(e.target.value)} />
            <Button onClick={handleEnhance}>GeraImg</Button>
             
            </div>

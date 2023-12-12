@@ -5,7 +5,7 @@ import prisma from '@/lib/db'
 export async function GET(req: NextRequest){
 
     try{
-        const user = await prisma.postUsers.findMany();
+        const user = await prisma.user.findMany();
         return Response.json({message:"GET", user}, {status:200})
     }catch(Error){
         return NextResponse.json({
@@ -19,20 +19,21 @@ export async function GET(req: NextRequest){
 export async function POST(req: NextRequest){
 
     try{
-        console.log('post')
-        const { title, body} = await req.json();
-        console.log(title, body, 'route')
-        const user = await prisma.postUsers.create({
+        console.log('post Dos usuarios')
+        const { name, email, id_user } = await req.json();
+        console.log(name, email, 'route post')
+        const user = await prisma.user.create({
             data: {
-                title,
-                body,
+                name,
+                email,
+                id_user
             },
         })
 
         return Response.json({Message: 'POST', user}, {status: 200})
     }catch(error){
             return NextResponse.json({
-                Message: 'ERROR',
+                Message: 'ERROR no post',
                 error
             }, {status: 500})
     }
@@ -41,39 +42,21 @@ export async function POST(req: NextRequest){
 
 
 
+
 export async function PUT(req:Response) {
-    const { id, title, body } = await req.json()
+    const { id, name, email } = await req.json()
     try{
-        const user = await prisma.postUsers.update({
+        const user = await prisma.user.update({
             where: {
                 id
             },
             data: {
-                title,
-                body,
+                name,
+                email,
             }
         })
         console.log(JSON.stringify(user))
         return Response.json({Message: 'PUT', user}, {status: 200})
-    }
-    catch(error){
-        return NextResponse.json({
-            Message: 'ERROR',
-            error
-        }, {status: 500})
-}
-}
-
-export async function DELETE(req:Response) {
-    const { id } = await req.json()
-    try{
-        const user = await prisma.postUsers.delete({
-            where: {
-                id
-            }
-        })
-        console.log(JSON.stringify(user))
-        return Response.json({Message: 'DELETE', user}, {status: 200})
     }
     catch(error){
         return NextResponse.json({

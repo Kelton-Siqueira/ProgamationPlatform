@@ -22,9 +22,9 @@ export default function MenuHomerCards({children}:ls){
 
     if(ls) null
     return (
-        <div className="flex justify-between  items-center h-16 fixed overflow-y-hidden w-screen bg-red-500  p-5 z-40">
-            <Link href={"/HomeUserAuth"} className="font-extrabold mx-8">
-                <span className="font-extralight">Logo</span>Bar
+        <div className="flex justify-between  items-center h-16 fixed overflow-y-hidden w-screen bg-zinc-400  p-5 z-40">
+            <Link href={"/HomeUserAuth"} className="font-extrabold text-xl  mx-8">
+                <span className=" text-transparent bg-clip-text text-xl bg-gradient-to-t from-black to-blue-400">Logo</span>Bar
             </Link>
             <header className="flex gap-10 mx-4 w-96 ">
                 {children}

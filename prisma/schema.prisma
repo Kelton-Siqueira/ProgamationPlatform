@@ -15,3 +15,10 @@ model PostUsers {
     title String
     body String
 }
+
+model User{
+    id Int @default(autoincrement()) @id
+    id_user Int
+    name String
+    email String
+}

@@ -25,12 +25,12 @@ export default function Navbar(){
                 <span className="font-extralight">Logo</span>Bar
             </div>
             <header className="flex gap-10 mx-4">
-                <Link className="mx-3 " href={"#section01"}><Button className="hover:bg-purple-500 rounded-full outline-none p-3">Section01</Button></Link>
-                <Link className="hover:bg-purple-500 rounded-full outline-none p-3"  href={"#section02"}><Button>section02</Button></Link>
-                <Link className="hover:bg-purple-500 rounded-full outline-none p-3"  href={"#section03"}><Button>section03</Button></Link>
+                <Link className="mx-3 " href={"#section01"}><Button className="hover:bg-purple-500 rounded-full bg-black text-red-500 hover:text-white w-36 flex justify-center items-center  border-white border-2 outline-none p-3">Section01</Button></Link>
+                <Link className="hover:bg-purple-500 rounded-full bg-black text-red-500 hover:text-white w-36 flex justify-center items-center  border-white border-2 outline-none p-3"  href={"#section02"}><Button>section02</Button></Link>
+                <Link className="hover:bg-purple-500 rounded-full bg-black text-red-500 hover:text-white w-36 flex justify-center items-center  border-white border-2 outline-none p-3"  href={"#section03"}><Button>section03</Button></Link>
             </header>
             <nav className="mx-6 gap-5">
-                <div className="flex gap-5 ">
+                <div className="flex gap-5  z-20">
                     <DialogDemo types='login' sub={true} />
                     <DialogDemo types='Create Account' sub={false} />
                 </div>

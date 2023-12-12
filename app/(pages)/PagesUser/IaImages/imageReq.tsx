@@ -44,17 +44,17 @@ export default function ImageReqs(){
       console.log( 'file')
 
     return(
-        <div className="justify-center left-20">
+        <div className="justify-end items-end">
             <div className=" flex-col justify-center items-center gap-3 rounded-md">
                 <h1 className="my-4 flex items-center justify-center text-4xl text-zinc-600">API Generete the Images</h1>
                 <h2 className="my-5 ">Aqui vemos Uma API Geradora de imagens, Digite o tipo de imagen (em ingles) no campo abaixo.</h2>
             {restoredfile ? (
                 <Image className="rounded-md relative left-40 shadow-2xl drop-shadow-2xl" src={restoredfile?.preview ? restoredfile?.preview : "" } width={300} alt="t" height={300} />
             ) : (
-                <Image className="rounded-md relative  shadow-2xl drop-shadow-2xl" src={"/accets/robot.webp" } width={600} alt="t" height={600} />
+                <Image className="rounded-md relative left-32  shadow-2xl drop-shadow-2xl" src={"/accets/loadingImage.jpg" } width={300} alt="t" height={300} />
             )}
            <div className=" w-full flex items-center my-4 gap-2">
-            <input className="border   rounded-2xl w-[31.4rem] h-9 outline-none px-5" type="text" onChange={(e) => seFiles(e.target.value)} />
+            <input className="border  text-black text-lg  rounded-2xl w-[31.4rem] h-9 outline-none px-5" type="text" onChange={(e) => seFiles(e.target.value)} />
            <Button onClick={handleEnhance}>GeraImg</Button>
             
            </div>

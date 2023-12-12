@@ -12,9 +12,8 @@ import { AlignJustify } from "lucide-react"
 
 export function DialogDemo() {
     const [btls, setBtls] = useState(false)
-    console.log(btls)
   return (
-    <div  className=" md:hidden  overflow-hidden fixed my-8 ">
+    <div  className=" md:hidden bg-white z-20 w-60 overflow-hidden fixed my-8 ">
         {
             btls ? (
                 <div onClick={() => setBtls(false)} className={cn(" md:hidden w-96 relative z-30 ")}>

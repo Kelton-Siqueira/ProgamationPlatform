@@ -19,12 +19,19 @@ import { useRouter } from "next/navigation"
   
   export function UserNavGlobal() {
     const router = useRouter()
-    const supabase = createClientComponentClient()
+    const supabase =  createClientComponentClient()
     const handler = async () => {
         await supabase.auth.signOut()
         router.refresh()
         router.push("/")
     }
+    const profile = async () => {
+        const supabase = await createClientComponentClient()
+        const ls = await supabase.auth.getUser()
+        const {data} =  ls
+        return data.user
+    }
+    const lst = profile().then((e) => e?.email)
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -39,13 +46,13 @@ import { useRouter } from "next/navigation"
             <div className="flex flex-col space-y-1">
               <p className="text-sm font-medium leading-none">shadcn</p>
               <p className="text-xs leading-none text-muted-foreground">
-                m@example.com
+               {lst}
               </p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={profile}>
               Profile
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>

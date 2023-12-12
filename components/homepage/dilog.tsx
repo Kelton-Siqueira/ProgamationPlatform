@@ -17,6 +17,7 @@ import { useEffect, useState } from "react"
 
 export function DialogDemo({ sub, types }: any) {
     const [ls, setLs] = useState(false)
+    const [isLogin, setIsLogin] = useState<boolean>(true)
 
     useEffect(() =>{
         setLs(true)
@@ -28,12 +29,10 @@ export function DialogDemo({ sub, types }: any) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className=" rounded-full border-none my-[0.2rem] hover:bg-slate-500 hover:text-white text-white bg-black " variant="outline">{types}</Button>
+        <Button className=" rounded-full border-none my-[0.2rem] hover:bg-slate-500 hover:text-white text-red-500 bg-black " variant="outline">{types}</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] h-[450px] bg-white rounded-2xl flex justify-center items-center shadow-black">
-        {sub ? <CreateAccountLoginForm /> : <CreateAccountForm />}
-        <DialogFooter>
-        </DialogFooter>
+      <DialogContent className=" sm:max-w-[425px] h-[35rem] bg-white rounded-2xl flex justify-center items-center shadow-black">
+        {sub ? <CreateAccountLoginForm /> : <CreateAccountForm isLogin={isLogin} SetisLogin={setIsLogin} />}
       </DialogContent>
     </Dialog>
   )

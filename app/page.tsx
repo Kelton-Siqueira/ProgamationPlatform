@@ -8,6 +8,7 @@ export default async function HomoPage() {
 
     let logg = false   
 
+    
 
   try{
     const supabase = createServerComponentClient({cookies})

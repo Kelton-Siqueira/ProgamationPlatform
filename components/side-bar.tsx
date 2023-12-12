@@ -10,10 +10,12 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function SidebarGlobal({ className }: SidebarProps) {
   return (
-    <div className=" z-20 ">
+    <div>
         <div className=" z-40  flex  m-[0.12rem] my-[2.1rem] justify-start ">
             <DialogDemo />
         </div>
+        <div className=" z-20 h-full  hidden md:block bg-white w-56 fixed">
+        
         <div className={cn("hidden md:flex   z-30  bg-red-500x' fixed ", className)}>
       <div className="space-y-4 py-4  w-52 flex items-start justify-center flex-col">
         <div className="px-3 py-2">
@@ -171,6 +173,7 @@ export function SidebarGlobal({ className }: SidebarProps) {
         <div className="py-2">
         </div>
       </div>
+    </div>
     </div>
     </div>
   )

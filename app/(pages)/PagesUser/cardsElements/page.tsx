@@ -21,6 +21,7 @@ export default async function Home() {
         headers: {
           "Content-Type": "application/json"
         }
+
       })
       const ls = await da.json()
       
