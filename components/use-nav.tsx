@@ -1,3 +1,4 @@
+'use client '
 import {
     Avatar,
     AvatarFallback,
@@ -15,7 +16,8 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui//dropdown-menu"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
+import { dados } from "./data"
   
   export function UserNavGlobal() {
     const router = useRouter()
@@ -26,10 +28,17 @@ import { useRouter } from "next/navigation"
         router.push("/")
     }
     const profile = async () => {
-        const supabase = await createClientComponentClient()
+        const supabase =  createClientComponentClient()
         const ls = await supabase.auth.getUser()
         const {data} =  ls
+        console.log('cliclou')
         return data.user
+    }
+    const yourname = async () => {
+        const data = await dados();
+        const profiles = data.user
+        console.log(profiles)
+        return profiles
     }
     const lst = profile().then((e) => e?.email)
     return (
@@ -44,15 +53,15 @@ import { useRouter } from "next/navigation"
         <DropdownMenuContent className="w-56 bg-slate-200" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">shadcn</p>
+              <p className="text-sm font-medium leading-none">{}</p>
               <p className="text-xs leading-none text-muted-foreground">
                {lst}
               </p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem onClick={profile}>
+          <DropdownMenuGroup className="">
+            <DropdownMenuItem className="cursor-pointer" onClick={yourname}>
               Profile
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>

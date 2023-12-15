@@ -65,3 +65,22 @@ export async function PUT(req:Response) {
         }, {status: 500})
 }
 }
+
+export async function DELETE(req:Response) {
+    const { id } = await req.json()
+    console.log(id, 'delete')
+    try{
+        const user = await prisma.user.delete({
+            where: {
+                id
+            }
+        })
+        return Response.json({Message: 'DELETE', user}, {status: 200})
+    }
+    catch(error){
+        return NextResponse.json({
+            Message: 'ERROR',
+            error
+        }, {status: 500})
+}
+}

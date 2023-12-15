@@ -38,9 +38,17 @@ type NewType = {
     isLogin: boolean
 }
 
+interface Profile {
+    id: number;
+    id_user: number;
+    name:string;
+    email:string;
+}
+
 export default function CreateAccountForm({ isLogin, SetisLogin }: NewType){
     const router = useRouter()
     const [pass, setPass] = useState(false)
+    const [isdisable, setDisable] = useState(false)
     console.log(isLogin)
     const [d, setD] = useState([
         {
@@ -64,13 +72,14 @@ export default function CreateAccountForm({ isLogin, SetisLogin }: NewType){
         try{
             //Como se trata de um component client não a uma necessidade de se ler um cookie, podendo ter acesso diretamente
             
-            
+            setDisable(isdisable ? false:true)
             const dadosbrutos = await dados()
             const ls = await dadosbrutos.user
             setD(ls)
             console.log(ls, 'ls')
         const supabase = createClientComponentClient()   
         const { email, password, ReaptPassword, UserName } = values
+        
         const { data:{ user }, error } = await supabase.auth.signUp({
             email,
             password,
@@ -78,17 +87,51 @@ export default function CreateAccountForm({ isLogin, SetisLogin }: NewType){
                 emailRedirectTo: `${location.origin}/auth/callback`
             } 
         })
-        console.log(d, 'd')
+        
+        console.log(values, 'valores')
         if(password === ReaptPassword){ 
             console.log('entrou no if do reapt')
-            console.log(d, 'de no reapt')
-            d.map((e) =>{
+            console.log(!ls[0], 'de no reapt')
+            if(!ls[0]){
+                    
+                console.log( 'else if')
+                console.log(isLogin, 'entrou no if')
+                
+                const data = async () => {
+                    try {
+                        const response = await fetch("/api/usuario", {
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                email: email,
+                                name: UserName,
+                                id_user: 10
+                            })
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        SetisLogin(true)
+                        
+                       
+                        
+                    } catch (error) {
+                        console.error('There was a problem with the fetch operation: ' + error);
+                    }
+                }
+                data()
+            
+            }
+            ls.map((e:Profile) =>{
                 console.log(e, 'parte de cima sem o if')
-                console.log('email', !!e.email)
-                console.log('o email', e.email)
-                if(e.email != email && !!e.email ){
+                
+                if(e.email != email && !!e.email){
                     console.log(e.email, 'e.email')
                     console.log(isLogin, 'entrou no if')
+                    
                     const data = async () => {
                         try {
                             const response = await fetch("/api/usuario", {
@@ -99,15 +142,16 @@ export default function CreateAccountForm({ isLogin, SetisLogin }: NewType){
                                 body: JSON.stringify({
                                     email: email,
                                     name: UserName,
-                                    id_user: 23
+                                    id_user: 10
                                 })
                             });
-                
+                            
                             if (!response.ok) {
                                 throw new Error(`HTTP error! status: ${response.status}`);
                             }
                             SetisLogin(true)
                             
+                           
                             
                         } catch (error) {
                             console.error('There was a problem with the fetch operation: ' + error);
@@ -115,7 +159,9 @@ export default function CreateAccountForm({ isLogin, SetisLogin }: NewType){
                     }
                     data()
                 }
+                
                 else{
+                    console.log('eerro ')
                      SetisLogin(false) 
                 }
                 
@@ -135,6 +181,9 @@ export default function CreateAccountForm({ isLogin, SetisLogin }: NewType){
             console.log('Erro no Create-Account Submit', error)
         }
     }
+
+   
+   
     
     return(
         <div className="flex z-40 flex-col justify-center items-center space-y-2">
@@ -228,7 +277,7 @@ export default function CreateAccountForm({ isLogin, SetisLogin }: NewType){
                             </FormItem>
                         )}  
                     />
-                    <Button className=" m-4 text-white border  active:text-white active:shadow-black active:h-8 active:bg-black" type="submit">Create Your Account</Button>
+                    <Button disabled={isdisable} className=" m-4 text-white border  active:text-white active:shadow-black active:h-8 active:bg-black" type="submit">Create Your Account</Button>
                     
                 </form>
                 
@@ -237,8 +286,6 @@ export default function CreateAccountForm({ isLogin, SetisLogin }: NewType){
     )
 }
 
-
-/**/
 
 
 

@@ -5,10 +5,7 @@ import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { cookies } from "next/headers";
 export default async function HomoPage() {
-
-    let logg = false   
-
-    
+   let logg = false   
 
   try{
     const supabase = createServerComponentClient({cookies})
@@ -19,9 +16,6 @@ export default async function HomoPage() {
   }finally{
     if(logg) redirect("/HomeUserAuth", RedirectType.replace)
   }
-
- 
-
     return (
         <div className=" overflow-hidden w-full flex  bg-slate-800 ">
          <div className=" z-30 h-28 gap-14 items-center fixed justify-between">
@@ -51,7 +45,7 @@ export default async function HomoPage() {
              <div className="px-8 h-[28rem] w-full  flex  flex-col ">
                  <h1 className="text-purple-900 text-3xl m-4"> -Quais São as suas utilidades</h1>
                  <div className="flex-col flex md:flex-row  items-center  md:items-start justify-between">
-                     <p className="text-clip text-black"> 
+                     <p className="text-clip text-white"> 
     &nbsp;  &nbsp; &nbsp;Ao trabalhar com conceitos de lógica e de matemática, a programação contribui muito para<br /> o desenvolvimento do raciocínio e do pensamento sistêmico dos jovens.<br /> 
     &nbsp;  &nbsp; &nbsp;Além disso, o trabalho minucioso da escrita de códigos treina bastante<br /> a concentração e a capacidade de resolução de problemas.<br />
     &nbsp;  &nbsp; &nbsp;Através da programação, é possível desenvolver softwares, aplicativos, <br />websites, jogos, sistemas de inteligência artificial e muito mais.<br /> 
